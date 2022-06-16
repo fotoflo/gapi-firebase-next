@@ -3,14 +3,11 @@ import styles from "../styles/Home.module.css";
 import { FaGoogle } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 
-function GoogleLoginButton() {
+const GoogleLoginButton: React.FC = () => {
   return (
-    <>
-      <h1 className={styles.title}>Welcome to NEXT JS</h1>
-      <Button>
-        <FaGoogle /> Login with Google
-      </Button>
-    </>
+    <Button>
+      <FaGoogle /> Login with Google
+    </Button>
   );
 }
 
