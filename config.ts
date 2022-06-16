@@ -2,9 +2,9 @@ export const ENV =  process.env.NODE_ENV
 
 export const APP_NAME = "githunter-7403f";
 export const REGION = "us-central1";
+export const HOST_NAME = "http://localhost:3000/"
 
 export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
-
 export const firebaseConfig = {
   FIREBASE_API_KEY : process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN : process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -19,5 +19,5 @@ export const firebaseConfig = {
 
 export const HOST =
   ENV === "development"
-    ? `http://localhost:5001/${APP_NAME}/${REGION}`
+    ? `${HOST_NAME}${APP_NAME}/${REGION}`
     : `https://${REGION}-${APP_NAME}}.cloudfunctions.net`;
