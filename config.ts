@@ -1,10 +1,12 @@
 export const ENV =  process.env.NODE_ENV
 
-export const APP_NAME = "githunter-7403f";
-export const REGION = "us-central1";
-export const HOST_NAME = "http://localhost:3000/"
+const APP_NAME = "githunter-7403f";
+const REGION = "us-central1";
+const HOST_NAME = "http://localhost:3000/"
 
-export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY
+
 export const firebaseConfig = {
   FIREBASE_API_KEY : process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN : process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -16,6 +18,17 @@ export const firebaseConfig = {
   FIREBASE_MEASUREMENT_ID : process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 } 
 
+export const GAPI_CONFIG = {
+  apiKey: GOOGLE_API_KEY,
+  clientId: GOOGLE_CLIENT_ID,
+  scope: "https://www.googleapis.com/auth/gmail.send",
+  discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"],
+  fetch_basic_profile: true,
+  immediate: true,
+  plugin_name: "githunter",
+};
+
+export const GMAIL_SEND_SCOPE = 'https://www.googleapis.com/auth/gmail.send'
 
 export const HOST =
   ENV === "development"
