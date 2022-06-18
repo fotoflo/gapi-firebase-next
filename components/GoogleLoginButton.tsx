@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "../styles/Home.module.css";
 import { FaGoogle } from "react-icons/fa";
 import { Button } from "react-bootstrap";
+import { signIn } from "next-auth/react";
 
 const GoogleLoginButton: React.FC = () => {
   return (
-    <Button>
+    <Button  onClick={() => signIn("google")}>
       <FaGoogle /> Login with Google
     </Button>
   );

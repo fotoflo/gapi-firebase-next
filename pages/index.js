@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <>
       <p>Not signed in</p>
-      <GithubLoginButton />
-      {/* <GoogleLoginButton /> */}
+      {/* <GithubLoginButton /> */}
+      <GoogleLoginButton />
     </>
   );
 }
