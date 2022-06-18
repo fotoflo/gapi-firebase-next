@@ -10,7 +10,7 @@ import { useSession, signOut } from "next-auth/react";
 
 import Avatar from "../components/util/Avatar";
   
-const dashboard = () => {
+const Dashboard:React.FC = () => {
   
   const router = useRouter();
   const { data: session, status } = useSession({
@@ -40,4 +40,4 @@ const dashboard = () => {
   );
 }
 
-export default dashboard
+export default Dashboard
