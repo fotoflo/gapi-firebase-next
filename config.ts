@@ -7,6 +7,9 @@ const HOST_NAME = "http://localhost:3000/"
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY
 
+export const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
+export const GITHUB_SECRET = process.env.NEXT_PUBLIC_GITHUB_SECRET
+
 export const firebaseConfig = {
   FIREBASE_API_KEY : process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN : process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
