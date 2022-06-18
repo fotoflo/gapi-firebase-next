@@ -1,25 +1,39 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import { Button } from "react-bootstrap";
 import GithubLoginButton from "../components/GithubLoginButton";
-import { ENV } from "../config";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 
 export default function Home() {
   const { data: session } = useSession();
+
   if (session) {
+    console.log({ session });
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <Image
+          src={session.user.image}
+          alt="user avatar"
+          height="48px"
+          width="48px"
+        />
+
+        <p>
+          {session.user.name} Signed in as {session.user.email}
+        </p>
+
+        <Button onClick={() => signOut()}>Sign out</Button>
       </>
     );
   }
+
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn("github")}>Sign in</button>
+      <p>Not signed in</p>
+      <GithubLoginButton />
+      {/* <GoogleLoginButton /> */}
     </>
   );
 }
