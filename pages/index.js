@@ -1,10 +1,11 @@
 import { useSession, signOut } from "next-auth/react";
 
 import Head from "next/head";
-import Image from "next/image";
 import { Button } from "react-bootstrap";
 import GithubLoginButton from "../components/GithubLoginButton";
 import GoogleLoginButton from "../components/GoogleLoginButton";
+
+import Avatar from "../components/util/Avatar";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -13,12 +14,7 @@ export default function Home() {
     console.log({ session });
     return (
       <>
-        <Image
-          src={session.user.image}
-          alt="user avatar"
-          height="48px"
-          width="48px"
-        />
+        <Avatar src={session.user.image} />
 
         <p>
           {session.user.name} Signed in as {session.user.email}
