@@ -1,16 +1,16 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
 import {
   GITHUB_CLIENT_ID,
   GITHUB_SECRET,
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-  firebaseConfig
-} from "../../../config"
+  firebaseConfig,
+} from "../../../config";
 
-import { FirebaseAdapter } from "@next-auth/firebase-adapter"
+import { FirebaseAdapter } from "@next-auth/firebase-adapter";
 
 import { initializeApp, getApp, getApps } from "firebase/app";
 import {
@@ -26,7 +26,6 @@ import {
   updateDoc,
   deleteDoc,
   runTransaction,
-  
 } from "firebase/firestore";
 
 !getApps().length ? initializeApp(firebaseConfig) : getApp();
@@ -44,9 +43,15 @@ export default NextAuth({
     }),
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET
+      clientSecret: GOOGLE_CLIENT_SECRET,
+      authorization: {
+        url: "https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code",
+        params: {
+          scope:
+            "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
+        },
+      },
     }),
-    // ...add more providers here
   ],
   adapter: FirebaseAdapter({
     db,
@@ -61,5 +66,5 @@ export default NextAuth({
     updateDoc,
     deleteDoc,
     runTransaction,
-    })
-})
+  }),
+});
