@@ -3,8 +3,6 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
-import { Button } from "react-bootstrap";
-import GithubLoginButton from "../components/GithubLoginButton";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 
 import Avatar from "../components/util/Avatar";

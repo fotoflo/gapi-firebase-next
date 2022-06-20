@@ -6,8 +6,8 @@ import { GOOGLE_GMAIL_AUTH_PARAMS } from "../config";
 
 const GoogleLoginButton: React.FC = () => {
   return (
-    <Button  onClick={() => signIn("google")}>
-      <FaGoogle /> Login with Google
+    <Button  onClick={() => signIn("gmail")}>
+      <FaGoogle /> Login with Gmail
     </Button>
   );
 }

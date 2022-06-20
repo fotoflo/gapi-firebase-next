@@ -7,6 +7,8 @@ import { Button } from "react-bootstrap";
 
 import { useSession, signOut } from "next-auth/react";
 
+import GithubLoginButton from "../components/GithubLoginButton";
+import GmailLoginButton from "../components/GmailLoginButton";
 
 import Avatar from "../components/util/Avatar";
   
@@ -25,7 +27,7 @@ const Dashboard:React.FC = () => {
     return <p>Loading...</p>
   }
 
-  console.log({ session });
+  console.log("session",  session );
 
   return (
     <>
@@ -34,6 +36,15 @@ const Dashboard:React.FC = () => {
       <p>
         {session.user.name} Signed in as {session.user.email}
       </p>
+
+      <div>
+        <GmailLoginButton />
+      </div>
+      <br />
+      <div>
+        <GithubLoginButton />
+      </div>
+      <br />
 
       <Button onClick={() => signOut()}>Sign out</Button>
     </>
