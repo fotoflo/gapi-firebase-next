@@ -4,12 +4,12 @@ import { Button } from "react-bootstrap";
 import { signIn } from "next-auth/react";
 import { GOOGLE_GMAIL_AUTH_PARAMS } from "../config";
 
-const GoogleLoginButton: React.FC = () => {
+const GmailLoginButton: React.FC = () => {
   return (
-    <Button  onClick={() => signIn("gmail")}>
+    <Button onClick={() => signIn("gmail")}>
       <FaGoogle /> Login with Gmail
     </Button>
   );
 }
 
-export default GoogleLoginButton;
+export default GmailLoginButton;

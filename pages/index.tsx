@@ -5,9 +5,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import GoogleLoginButton from "../components/GoogleLoginButton";
 
-import Avatar from "../components/util/Avatar";
-
-export default function Home() {
+const Home: React.FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -18,8 +16,9 @@ export default function Home() {
   return (
     <>
       <p>Not signed in</p>
-      {/* <GithubLoginButton /> */}
       <GoogleLoginButton />
     </>
   );
 }
+
+export default Home
