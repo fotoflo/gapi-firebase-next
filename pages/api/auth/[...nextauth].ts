@@ -33,4 +33,12 @@ export default NextAuth({
     }),
   ],
   adapter: FirebaseAdapter(firebaseComponents),
+  callbacks: {
+    async session({ session, token, user }) {
+      // Send properties to the client,
+      // session.token = token;
+      session.user = user;
+      return session;
+    },
+  },
 });
