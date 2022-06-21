@@ -13,6 +13,7 @@ import {
 
 import { FirebaseAdapter } from "@next-auth/firebase-adapter";
 import { firebaseComponents } from "../../../components/util/firebase";
+import { getProviders } from "next-auth/react";
 const { db, doc, getDoc, updateDoc } = firebaseComponents;
 
 // 2-You might then get an error that states "cannot use toDate method of undefined", If this occurred tap into node_modules/@next-auth/firebase-adapter/dist inside index.js file replace the exports.format object with this code which adds a "?" operator after value objec
@@ -22,9 +23,8 @@ export default NextAuth({
   // Configure one or more authentication providers
   adapter: FirebaseAdapter(firebaseComponents),
   secret: NEXTAUTH_SECRET,
-  checks: "both",
   session: {
-    strategy: "jwt",
+    strategy: "database",
   },
   providers: [
     GithubProvider({
@@ -38,35 +38,51 @@ export default NextAuth({
     GmailProvider({
       clientId: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
+      checks: "state",
     }),
   ],
   callbacks: {
     async jwt({ token, account, isNewUser }) {
       console.log("JWT CALLBACK");
-      console.log({ token, isNewUser });
+      console.log({ token, account, isNewUser });
 
       return token;
     },
     async signIn({ user, account, profile, email, credentials }) {
-      const isAllowedToSignIn = true;
-      if (account.provider === "github") {
-        const userRef = doc(db, `/users/${user.id}`);
-        await updateDoc(userRef, {
-          githubData: account,
-        });
-        return true;
-      } else {
-        // Return false to display a default error message
-        return false;
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
-      }
+      console.log("SIGNIN CALLBACK");
+      console.log({ user });
+      console.log({ account });
+
+      console.log(`signing in with provider ${account.provider}`);
+      return await storeUser(user, account);
     },
     async session({ session, token, user }) {
+      console.log("SESSION CALLBACK");
+      console.log({ session });
+      console.log({ token });
+      console.log({ user });
       // Send properties to the client,
-      console.log("token", token);
       session.token = token;
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      console.log(`REDIRECT CALLBACK url: ${url}, baseurl ${baseUrl}`);
+      return url;
+    },
   },
 });
+
+const storeUser = async (user, account) => {
+  try {
+    const userRef = doc(db, `/users/${user.id}`);
+    await updateDoc(userRef, {
+      [`${account.provider}Data`]: account,
+    });
+    return true;
+  } catch (err) {
+    console.log(`err storing the user data from ${account.provider}`, err);
+    if (user.id.length != "1sVPXkihaEZ8vFjHYfoK".length) {
+      return "/";
+    }
+  }
+};
