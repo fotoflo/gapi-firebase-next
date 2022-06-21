@@ -4,6 +4,8 @@ const APP_NAME = "githunter-7403f";
 const REGION = "us-central1";
 const HOST_NAME = "http://localhost:3000/";
 
+export const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+
 export const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
 export const GITHUB_SECRET = process.env.NEXT_PUBLIC_GITHUB_SECRET;
 

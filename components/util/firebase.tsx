@@ -13,12 +13,15 @@ import {
   deleteDoc,
   runTransaction,
 } from "firebase/firestore";
+
 import { firebaseConfig } from "../../config";
 
 
 
 !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
 export const db = getFirestore();
+
 
 export const firebaseComponents = {
   db,
